@@ -119,8 +119,8 @@ static OSStatus invokeRot13(MechanismRef *mechanism)
     newValue.data = malloc(newValue.length);
     do_rot13(newValue.data, value->data, newValue.length);
 
-    syslog(LOG_ERR, "old: %*s new: %*s", value->length, (const char *)value->data,
-        newValue.length, (const char *)newValue.data);
+    syslog(LOG_ERR, "old: %*s new: %*s", (int)value->length, (const char *)value->data,
+        (int)newValue.length, (const char *)newValue.data);
 
     status = mechanism->plugin->callbacks->SetContextValue(mechanism->engine, kAuthorizationEnvironmentPassword,
         contextFlags, &newValue);
